@@ -22,6 +22,7 @@ Partial Class Login
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -32,7 +33,7 @@ Partial Class Login
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(169, 326)
+        Me.Button1.Location = New System.Drawing.Point(169, 325)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(190, 31)
         Me.Button1.TabIndex = 2
@@ -83,9 +84,9 @@ Partial Class Login
         'Quit
         '
         Me.Quit.BackColor = System.Drawing.Color.Transparent
-        Me.Quit.BackgroundImage = Global.Cook_Eat.My.Resources.Resources.user_exit_5121
+        Me.Quit.BackgroundImage = Global.Cook_Eat.My.Resources.Resources.user_exit_5122
         Me.Quit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Quit.Location = New System.Drawing.Point(417, 471)
+        Me.Quit.Location = New System.Drawing.Point(418, 471)
         Me.Quit.Name = "Quit"
         Me.Quit.Size = New System.Drawing.Size(32, 31)
         Me.Quit.TabIndex = 6
@@ -96,8 +97,8 @@ Partial Class Login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.BackgroundImage = Global.Cook_Eat.My.Resources.Resources.Login3
-        Me.ClientSize = New System.Drawing.Size(509, 549)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(502, 549)
         Me.ControlBox = False
         Me.Controls.Add(Me.Quit)
         Me.Controls.Add(Me.Label2)
@@ -106,6 +107,7 @@ Partial Class Login
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cook Eat"
