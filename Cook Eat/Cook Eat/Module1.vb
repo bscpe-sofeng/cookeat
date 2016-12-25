@@ -1,12 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 Module Module1
 
-
-
+    Dim trial As Integer = 10
     Friend con As New MySqlConnection("server=localhost;user=root;password=nolsaranghe9;database=cookeat")
     Friend cmd As New MySqlCommand
     Friend dr As MySqlDataReader
     Friend da As New MySqlDataAdapter
+
 
 
     Friend Sub Connect()
@@ -26,11 +26,10 @@ Module Module1
         End Try
     End Sub
 
-    Dim trial As Integer = 10
+
 
     Friend Sub disconnect()
         If con.state = ConnectionState.Open Then con.close()
     End Sub
-
 
 End Module
