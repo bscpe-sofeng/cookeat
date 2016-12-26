@@ -6,8 +6,7 @@ Module Module1
     Friend cmd As New MySqlCommand
     Friend dr As MySqlDataReader
     Friend da As New MySqlDataAdapter
-
-
+    Friend logname As String
 
     Friend Sub Connect()
         Try
@@ -25,8 +24,6 @@ Module Module1
             End If
         End Try
     End Sub
-
-
 
     Friend Sub disconnect()
         If con.state = ConnectionState.Open Then con.close()

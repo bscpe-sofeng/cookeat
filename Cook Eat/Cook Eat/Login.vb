@@ -14,11 +14,13 @@ Public Class Login
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         login()
+        logname = username.Text
     End Sub
 
     Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles password.KeyPress
         If e.KeyChar = Convert.ToChar(13) Then
             login()
+            logname = username.Text
         End If
     End Sub
 
@@ -31,12 +33,20 @@ Public Class Login
                 password.Clear()
             Else
                 Connect()
+                cmd = New MySqlCommand("INSERT INTO dlog VALUES (NULL, @ub, @md,@ut,NOW())", con)
+                cmd.Parameters.Add(New MySqlParameter("ub", username.Text))
+                cmd.Parameters.Add(New MySqlParameter("md", "Login"))
+                cmd.Parameters.Add(New MySqlParameter("ut", ""))
+                cmd.ExecuteNonQuery()
                 cmd = New MySqlCommand("SELECT *  FROM users WHERE username = @un AND password = @pw", con)
                 cmd.Parameters.Add(New MySqlParameter("un", username.Text))
                 cmd.Parameters.Add(New MySqlParameter("pw", password.Text))
                 dr = cmd.ExecuteReader
                 If dr.Read Then
                     If dr("pos") = "Admin" Then
+
+
+
                         Me.Hide()
                         Admin.Show()
                     ElseIf dr("pos") = "Kitchen" Then

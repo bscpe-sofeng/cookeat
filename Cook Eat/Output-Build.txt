@@ -1,0 +1,3 @@
+﻿1>------ Rebuild All started: Project: Cook Eat, Configuration: Debug Any CPU ------
+1>  Cook Eat -> F:\Thesis\Software Eng\Github\cookeat\Cook Eat\Cook Eat\bin\Debug\Cook Eat.exe
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
