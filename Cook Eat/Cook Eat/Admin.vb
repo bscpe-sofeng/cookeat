@@ -1,13 +1,17 @@
 ﻿Imports System.ComponentModel
 Imports System.Data
 Imports MySql.Data.MySqlClient
+Imports Excel = Microsoft.Office.Interop.Excel
 
 Public Class Admin
     Private Sub Admin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTable()
         Timer1.Start()
         Label8.Text = logname
+        Label19.Text = logname
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        ComboBox2.SelectedItem = DateTime.Now.ToString("HH")
+        ComboBox3.SelectedItem = DateTime.Now.ToString("mm")
     End Sub
 
     Private Sub Admin_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -37,6 +41,10 @@ Public Class Admin
         DataGridView1.Columns("no").Visible = False
         DataGridView1.Columns("password").Visible = False
     End Sub
+
+
+
+    '========================================  User Account
 
     Private Sub search()
         LoadTable()
@@ -160,8 +168,13 @@ Public Class Admin
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Label9.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+        Label9.Text = DateTime.Now.ToString("MMMM dd , yyyy ")
+        Label10.Text = DateTime.Now.ToString("h:mm:ss tt")
     End Sub
+
+
+
+    '=============================  History Log
 
     Private Sub PictureBox5_MouseHover(sender As Object, e As EventArgs) Handles PictureBox5.MouseHover
         PictureBox5.Hide()
@@ -181,4 +194,30 @@ Public Class Admin
     End Sub
 
 
+
+
+
+    '==============================  Reservation
+    Private Sub TextBox10_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox10.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Please enter numbers only", "Cook Eat System")
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Connect()
+        cmd = New MySqlCommand("INSERT INTO res VALUES (NULL, @cnm, @cn,@day,@time, @rt, @nt, @torder)", con)
+        cmd.Parameters.Add(New MySqlParameter("cnm", TextBox8.Text))
+        cmd.Parameters.Add(New MySqlParameter("cn", TextBox9.Text))
+        cmd.Parameters.Add(New MySqlParameter("day", DateTimePicker1.Value))
+        cmd.Parameters.Add(New MySqlParameter("time", (ComboBox2.Text & ":" & ComboBox3.Text)))
+        cmd.Parameters.Add(New MySqlParameter("rt", TextBox10.Text))
+        cmd.Parameters.Add(New MySqlParameter("nt", RichTextBox1.Text))
+        cmd.Parameters.Add(New MySqlParameter("torder", Label19.Text))
+        cmd.ExecuteNonQuery()
+        disconnect()
+        MsgBox("Reservation Succefuly Added!", MsgBoxStyle.Exclamation, "Cook Eat System")
+
+    End Sub
 End Class

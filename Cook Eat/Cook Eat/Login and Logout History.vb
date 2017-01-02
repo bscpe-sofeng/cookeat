@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Data
 Imports MySql.Data.MySqlClient
-Imports System.Data.OleDb
+Imports Excel = Microsoft.Office.Interop.Excel
 
 Public Class LLH
     Private Sub LLH_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -25,7 +25,6 @@ Public Class LLH
         LoadTable()
         If DataGridView1.SelectedRows.Count > 0 Then
             LoadTable()
-        Else
         End If
     End Sub
 
@@ -35,6 +34,42 @@ Public Class LLH
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
         If e.KeyChar = Convert.ToChar(13) Then
             search()
+
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If DataGridView1.Rows.Count > 0 Then
+            Dim wapp As Microsoft.Office.Interop.Excel.Application
+            Dim wsheet As Microsoft.Office.Interop.Excel.Worksheet
+            Dim wbook As Microsoft.Office.Interop.Excel.Workbook
+            Dim chartRange As Microsoft.Office.Interop.Excel.Range
+            wapp = New Microsoft.Office.Interop.Excel.Application
+            wapp.Visible = True
+            wbook = wapp.Workbooks.Add()
+            wsheet = wbook.ActiveSheet
+            Dim iX As Integer
+            Dim iY As Integer
+            Dim iC As Integer
+            For iC = 0 To DataGridView1.Columns.Count - 1
+                wsheet.Cells(1, iC + 1).Value = DataGridView1.Columns(iC).HeaderText
+                wsheet.Cells(1, iC + 1).font.bold = True
+            Next
+            For iX = 0 To DataGridView1.Rows.Count - 1
+                For iY = 0 To DataGridView1.Columns.Count - 1
+                    wsheet.Cells(iX + 2, iY + 1).value = DataGridView1(iY, iX).Value.ToString
+                Next
+            Next
+            wsheet.Columns.AutoFit()
+            If MsgBox("Clear History?", MsgBoxStyle.YesNo, "Cook Eat System") = MsgBoxResult.Yes Then
+                Connect()
+                cmd = New MySqlCommand("TRUNCATE TABLE  dlog;", con)
+                cmd.ExecuteNonQuery()
+                disconnect()
+                LoadTable()
+            End If
+        Else
+            MsgBox("History is Empty!", MsgBoxStyle.Information, "Cook Eat System")
         End If
     End Sub
 End Class
