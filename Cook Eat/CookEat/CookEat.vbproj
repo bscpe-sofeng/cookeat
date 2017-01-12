@@ -122,6 +122,12 @@
     <Compile Include="FORM\Admin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FORM\ireservation.Designer.vb">
+      <DependentUpon>ireservation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\ireservation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FORM\Login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FORM\Admin.resx">
       <DependentUpon>Admin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\ireservation.resx">
+      <DependentUpon>ireservation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
@@ -351,6 +360,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservationBG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

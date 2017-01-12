@@ -100,6 +100,7 @@ Partial Class Admin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,7 +193,7 @@ Partial Class Admin
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(160, 23)
         Me.Button6.TabIndex = 5
-        Me.Button6.Text = "Logout"
+        Me.Button6.Text = "Exit"
         Me.Button6.UseVisualStyleBackColor = False
         '
         'Button5
@@ -667,7 +668,7 @@ Partial Class Admin
         Me.TabPage7.Location = New System.Drawing.Point(4, 25)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(316, 491)
+        Me.TabPage7.Size = New System.Drawing.Size(316, 497)
         Me.TabPage7.TabIndex = 1
         Me.TabPage7.Text = "New Account"
         '
@@ -892,11 +893,15 @@ Partial Class Admin
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox1.Location = New System.Drawing.Point(223, 90)
+        Me.GroupBox1.Location = New System.Drawing.Point(223, 92)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(865, 26)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
+        '
+        'Timer2
+        '
+        Me.Timer2.Interval = 1000
         '
         'Admin
         '
@@ -1010,4 +1015,5 @@ Partial Class Admin
     Friend WithEvents Button11 As Button
     Friend WithEvents Label17 As Label
     Friend WithEvents Button13 As Button
+    Friend WithEvents Timer2 As Timer
 End Class

@@ -1,0 +1,6 @@
+      If dr("day") = Date.Today() Then
+                If dr("time") > Now.TimeOfDay Then
+                    MsgBox("hello")
+                End If
+            Else
+            End If

@@ -12,7 +12,7 @@ Module SQLconnector
     Friend dr As MySqlDataReader
     Friend da As New MySqlDataAdapter
     Friend logname As String
-
+    Friend rname As String
     Friend Sub Connect()
         Try
             disconnect()

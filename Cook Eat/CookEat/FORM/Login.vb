@@ -3,6 +3,10 @@ Public Class LoginForm
     Dim LoginDesign As Boolean = False
     Dim x, y As Integer
     Dim Newpoint As New Point
+    Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        username.Clear()
+        password.Clear()
+    End Sub
     '================================Login Settings=============================================================
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Signin.Click
         Me.Opacity = 1
@@ -67,12 +71,6 @@ Public Class LoginForm
         End If
         SQLsettings.ShowDialog()
     End Sub
-
-    Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        username.Clear()
-        password.Clear()
-    End Sub
-
     Private Sub loginFunction()
         If username.Text = "" Or password.Text = "" Then
             MsgBox("Username and Password Required!", MsgBoxStyle.Exclamation, "Cook Eat System")
@@ -94,7 +92,6 @@ Public Class LoginForm
                     logname = username.Text
                     Splash.Show()
                     Me.Hide()
-
                 Else
                     MsgBox("Incorrect Username or Password!", MsgBoxStyle.Exclamation, "Cook Eat System")
                     username.Clear()

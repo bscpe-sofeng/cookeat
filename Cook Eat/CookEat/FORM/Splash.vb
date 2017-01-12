@@ -12,6 +12,8 @@ Public Class Splash
         End If
         disconnect()
     End Sub
+    '=============================== Entering Form =========================================
+    '=======================================================================================
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If PictureBox2.Visible = True Then
             PictureBox2.Hide()
@@ -21,7 +23,7 @@ Public Class Splash
             PictureBox2.Show()
         End If
         i += 1
-        If i = 5 Then
+        If i = 4 Then
             Connect()
             cmd = New MySqlCommand("SELECT *  FROM users WHERE username = @un", con)
             cmd.Parameters.Add(New MySqlParameter("un", logname))
@@ -43,6 +45,4 @@ Public Class Splash
             Timer1.Stop()
         End If
     End Sub
-
-
 End Class

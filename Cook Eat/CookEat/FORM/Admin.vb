@@ -8,17 +8,18 @@ Public Class Admin
         Me.CenterToScreen()
         Label1.Text = logname
         Timer1.Start()
+        Timer2.Start()
         LoadTable()
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         Label17.Text = currentDate.ToString("MMMM, yyyy")
         LoadCalendar(currentDate)
     End Sub
-
     '============================================ Design and Layout ================================================================
     '===============================================================================================================================
     Private Sub Admin_MouseDown_1(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         x = Control.MousePosition.X - Me.Location.X
         x = Control.MousePosition.Y - Me.Location.Y
+        Me.Opacity = 0.8
     End Sub
     Private Sub Admin_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
         If e.Button = Windows.Forms.MouseButtons.Left Then
@@ -28,6 +29,9 @@ Public Class Admin
             Me.Location = Newpoint
             Application.DoEvents()
         End If
+    End Sub
+    Private Sub Admin_MouseUp(sender As Object, e As MouseEventArgs) Handles MyBase.MouseUp
+        Me.Opacity = 1
     End Sub
     Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBox1.MouseHover
         PictureBox1.Hide()
@@ -58,7 +62,6 @@ Public Class Admin
     End Sub
     Private Sub PictureBox8_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox8.MouseClick
         Me.Refresh()
-
         If Not Menu Then
             Do Until Me.Width = 1100
                 Me.Width += 20
@@ -86,6 +89,8 @@ Public Class Admin
             MenuB = False
         End If
     End Sub
+
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Label2.Text = DateTime.Now.ToString("h:mm:ss tt")
     End Sub
@@ -104,9 +109,17 @@ Public Class Admin
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         TabControl1.SelectedTab = TabPage5
     End Sub
+
+
+
+    '=============================================== Exit ========================================================================
+    '==============================================================================================================================
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        logout()
-        Me.Hide()
+        If MessageBox.Show("Are you sure want to exit now?", "Cook Eat System", MessageBoxButtons.YesNo) = DialogResult.No Then
+        Else
+            logout()
+            Me.Close()
+        End If
     End Sub
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
         If MessageBox.Show("Are you sure want to exit now?", "Cook Eat System", MessageBoxButtons.YesNo) = DialogResult.No Then
@@ -158,7 +171,6 @@ Public Class Admin
             search()
         End If
     End Sub
-
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         If DataGridView1.SelectedRows.Count = 0 Then
             MsgBox("Account list is Empty", MsgBoxStyle.Information, "Cook Eat System")
@@ -234,7 +246,6 @@ Public Class Admin
             End If
         End If
     End Sub
-
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         If TextBox8.Text = "" Or TextBox10.Text = "" Or TextBox11.Text = "" Or TextBox9.Text = "" Or TextBox13.Text = "" Or TextBox12.Text = "" Or ComboBox2.Text = "" Then
             MsgBox("Complete Information Required!", MsgBoxStyle.Exclamation, "Cook Eat System")
@@ -296,24 +307,10 @@ Public Class Admin
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    '============================================Reservation ================================================================
+    '===============================================================================================================================
     Private _item As New List(Of Calendar.CalendarItem)
     Private currentDate As DateTime = Now
-
-
     Private Sub LoadCalendar(dte As DateTime)
         Dim currentDay As DayOfWeek = dte.DayOfWeek
         Dim firstSunday As DateTime = dte.AddDays(-CInt(currentDay))
@@ -321,16 +318,15 @@ Public Class Admin
         Calendar1.Items.Clear()
         _item = New List(Of Calendar.CalendarItem)
         Connect()
-        cmd = New MySqlCommand("SELECT * FROM res WHERE `day` BETWEEN @start AND @end", con)
+        cmd = New MySqlCommand("SELECT * FROM res WHERE  `status`= @stat AND (`day` BETWEEN @start AND @end)", con)
         cmd.Parameters.Add(New MySqlParameter("start", firstSunday))
         cmd.Parameters.Add(New MySqlParameter("end", firstSunday.AddDays(6)))
+        cmd.Parameters.Add(New MySqlParameter("stat", "pending"))
         dr = cmd.ExecuteReader
-
         While dr.Read
             Dim start As Date = CDate(dr("day")).Add(dr("time"))
             Dim dteend As Date = start.AddMinutes(30)
             Dim casl As New Calendar.CalendarItem(Calendar1, start, dteend, dr("cname"))
-            'Dim casl As New Calendar.CalendarItem(Calendar1, start, dteend, dr("cname") & dr("cno") & dr("rtable"))
             casl.Tag = dr("rno")
             _item.Add(casl)
         End While
@@ -340,9 +336,7 @@ Public Class Admin
 
     Private Sub Calendar1_LoadItems(sender As Object, e As Calendar.CalendarLoadEventArgs) Handles Calendar1.LoadItems
         For Each dcal As Calendar.CalendarItem In _item
-            'If Calendar1.ViewIntersects(dcal) Then
             Calendar1.Items.Add(dcal)
-            'End If
         Next
     End Sub
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
@@ -350,22 +344,38 @@ Public Class Admin
         LoadCalendar(currentDate)
         Label17.Text = currentDate.ToString("MMMM, yyyy")
     End Sub
-
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         currentDate = currentDate.AddDays(7)
         LoadCalendar(currentDate)
         Label17.Text = currentDate.ToString("MMMM, yyyy")
     End Sub
-
     Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click
         LoadCalendar(Date.Now())
         Label17.Text = Date.Now.ToString("MMMM, yyyy")
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
-        Me.Opacity = 0.4
+        Me.Opacity = 0.7
         Reservation.ShowDialog()
+    End Sub
 
+    Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Please enter numbers only", "Cook Eat System")
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TextBox11_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox11.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Please enter numbers only", "Cook Eat System")
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        LoadCalendar(currentDate)
+        Calendar1.Reload()
     End Sub
 
     Private Sub Calendar1_ItemSelected(sender As Object, e As Calendar.CalendarItemEventArgs) Handles Calendar1.ItemSelected
@@ -374,7 +384,11 @@ Public Class Admin
         cmd.Parameters.Add(New MySqlParameter("id", e.Item.Tag))
         dr = cmd.ExecuteReader
         If dr.Read Then
+            rname = dr("rno")
             MsgBox(dr("cname"))
+            MsgBox(rname)
+            ireservation.ShowDialog()
+
             'Tuloy mo nalang, ibalik mo pabalik sa mga textbox and combobox 'yung mga galing database 
         End If
         disconnect()
