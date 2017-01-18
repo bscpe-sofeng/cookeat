@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Admin
-    Dim Menu As Boolean = False
+    Dim MenuA As Boolean = False
     Dim MenuB As Boolean = False
     Dim x, y As Integer
     Dim Newpoint As New Point
@@ -13,6 +13,13 @@ Public Class Admin
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         Label17.Text = currentDate.ToString("MMMM, yyyy")
         LoadCalendar(currentDate)
+
+
+        If pos = "cashier" Then
+            Button4.Hide()
+            Button5.Hide()
+
+        End If
     End Sub
     '============================================ Design and Layout ================================================================
     '===============================================================================================================================
@@ -62,18 +69,18 @@ Public Class Admin
     End Sub
     Private Sub PictureBox8_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox8.MouseClick
         Me.Refresh()
-        If Not Menu Then
+        If Not MenuA Then
             Do Until Me.Width = 1100
                 Me.Width += 20
                 System.Threading.Thread.Sleep(1)
             Loop
-            Menu = True
+            MenuA = True
         Else
             Do Until Me.Width = 200
                 Me.Width -= 4
                 System.Threading.Thread.Sleep(1)
             Loop
-            Menu = False
+            MenuA = False
         End If
         If Me.Width = 1100 Then
             Do Until Panel1.Height = 375
@@ -326,7 +333,7 @@ Public Class Admin
         While dr.Read
             Dim start As Date = CDate(dr("day")).Add(dr("time"))
             Dim dteend As Date = start.AddMinutes(30)
-            Dim casl As New Calendar.CalendarItem(Calendar1, start, dteend, dr("cname"))
+            Dim casl As New Calendar.CalendarItem(Calendar1, start, dteend, "No: " & dr("rno"))
             casl.Tag = dr("rno")
             _item.Add(casl)
         End While
@@ -350,7 +357,6 @@ Public Class Admin
         Label17.Text = currentDate.ToString("MMMM, yyyy")
     End Sub
     Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click
-        LoadCalendar(Date.Now())
         Label17.Text = Date.Now.ToString("MMMM, yyyy")
     End Sub
 
@@ -378,6 +384,17 @@ Public Class Admin
         Calendar1.Reload()
     End Sub
 
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        Me.Opacity = 0.7
+        loghistory.ShowDialog()
+
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Me.Opacity = 0.7
+        reshistory.ShowDialog()
+    End Sub
+
     Private Sub Calendar1_ItemSelected(sender As Object, e As Calendar.CalendarItemEventArgs) Handles Calendar1.ItemSelected
         Connect()
         cmd = New MySqlCommand("select * from res where rno = @id", con)
@@ -385,12 +402,31 @@ Public Class Admin
         dr = cmd.ExecuteReader
         If dr.Read Then
             rname = dr("rno")
-            MsgBox(dr("cname"))
-            MsgBox(rname)
+            Me.Opacity = 0.7
             ireservation.ShowDialog()
-
-            'Tuloy mo nalang, ibalik mo pabalik sa mga textbox and combobox 'yung mga galing database 
         End If
         disconnect()
     End Sub
+
+    ' Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+    ' If Not BackgroundWorker1.IsBusy Then
+    '        BackgroundWorker1.RunWorkerAsync()
+    'End If
+    ' End Sub
+
+    ' Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+    '    Connect1()
+    '    cmd1 = New MySqlCommand("Select * from res where `day` = DATE(@date) AND (`time` BETWEEN TIME(@start) AND TIME(@end))", con1)
+    'Dim endTime As DateTime = Now.AddSeconds(10)
+    'Dim dteNow As DateTime = Now
+    '     cmd1.Parameters.Add(New MySqlParameter("date", dteNow))
+    '    cmd1.Parameters.Add(New MySqlParameter("start", dteNow))
+    '    cmd1.Parameters.Add(New MySqlParameter("end", endTime))
+    '    dr1 = cmd1.ExecuteReader
+    'If dr1.Read() Then
+    '     MsgBox("Hi")
+    '   End If
+    '   disconnect1()
+    ' End Sub
+
 End Class

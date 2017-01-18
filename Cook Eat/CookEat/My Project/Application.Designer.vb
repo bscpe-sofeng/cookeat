@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.CookEat.Admin
+            Me.MainForm = Global.CookEat.LoginForm
         End Sub
     End Class
 End Namespace

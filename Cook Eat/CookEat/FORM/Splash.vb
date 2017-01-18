@@ -38,7 +38,9 @@ Public Class Splash
                 ElseIf dr("pos") = "Kitchen" Then
                     'MsgBox("Kitchen")
                 ElseIf dr("pos") = "Cashier" Then
-                    ' MsgBox("Cashier")
+                    pos = "cashier"
+                    Me.Hide()
+                    Admin.Show()
                 End If
             End If
             disconnect()

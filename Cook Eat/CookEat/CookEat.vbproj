@@ -75,6 +75,12 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Frost_Animation">
+      <HintPath>..\..\..\New Cook Eat w-Calendar\Dll\Frost_Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="Frost_Controls">
+      <HintPath>..\Dll\Frost_Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -90,6 +96,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.Calendar">
       <HintPath>..\..\..\New Cook Eat w-Calendar\Dll\System.Windows.Forms.Calendar.dll</HintPath>
@@ -128,6 +135,18 @@
     <Compile Include="FORM\ireservation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FORM\Log History\loghistory.Designer.vb">
+      <DependentUpon>loghistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\Log History\loghistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\Log History\reservation history.Designer.vb">
+      <DependentUpon>reservation history.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\Log History\reservation history.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FORM\Login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +160,7 @@
     <Compile Include="FORM\Reservation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FORM\SQLconnector 1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -177,6 +197,12 @@
     <EmbeddedResource Include="FORM\ireservation.resx">
       <DependentUpon>ireservation.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FORM\Log History\loghistory.resx">
+      <DependentUpon>loghistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\Log History\reservation history.resx">
+      <DependentUpon>reservation history.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FORM\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +223,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="CookEat_TemporaryKey.pfx" />
     <None Include="FORM\app.config" />
     <None Include="My Project\Application.myapp">
@@ -363,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reservationBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login png.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@
 Imports System.IO
 Imports System.Text
 Imports MySql.Data.MySqlClient
-Module SQLconnector
+Module SQLconnector2
     Friend host As String = ""
     Friend user As String = ""
     Friend password As String = ""
@@ -12,6 +12,7 @@ Module SQLconnector
     Friend dr As MySqlDataReader
     Friend da As New MySqlDataAdapter
     Friend logname As String
+    Friend pos As String
     Friend rname As String
     Friend Sub Connect()
         Try

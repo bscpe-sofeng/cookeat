@@ -26,33 +26,49 @@ Public Class Reservation
             e.Handled = True
         End If
     End Sub
+    Private Sub TextBox10_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox10.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Please enter numbers only", "Cook Eat System")
+            e.Handled = True
+        End If
+    End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        If DateTimePicker1.Value < Date.Today Then
-            MsgBox("Selected Date invalid!", MsgBoxStyle.Exclamation, "Cook Eat System")
+
+        If TextBox8.Text = "" Or TextBox9.Text = "" Or ComboBox2.Text = "" Or ComboBox3.Text = "" Or TextBox10.Text = "" Or RichTextBox1.Text = "" Then
+
+            MsgBox("Complete Information Required!", MsgBoxStyle.Exclamation, "Cook Eat System")
         Else
-            If MessageBox.Show(TextBox8.Text & vbCrLf & TextBox9.Text & vbCrLf & DateTimePicker1.Text & vbCrLf & ComboBox2.Text & ":" & ComboBox3.Text & vbCrLf & TextBox10.Text & vbCrLf & RichTextBox1.Text & vbCrLf & " " & vbCrLf & "Save Reservation?", "Cook Eat System", MessageBoxButtons.YesNo) = DialogResult.No Then
+
+
+            If DateTimePicker1.Value < Date.Today Then
+                MsgBox("Selected Date invalid!", MsgBoxStyle.Exclamation, "Cook Eat System")
             Else
-                Connect()
-                cmd = New MySqlCommand("INSERT INTO res VALUES (NULL, @cnm, @cn,@day,@time, @rt, @nt, @torder,@stat)", con)
-                cmd.Parameters.Add(New MySqlParameter("cnm", TextBox8.Text))
-                cmd.Parameters.Add(New MySqlParameter("cn", TextBox9.Text))
-                cmd.Parameters.Add(New MySqlParameter("day", DateTimePicker1.Value))
-                cmd.Parameters.Add(New MySqlParameter("time", (ComboBox2.Text & ":" & ComboBox3.Text)))
-                cmd.Parameters.Add(New MySqlParameter("rt", TextBox10.Text))
-                cmd.Parameters.Add(New MySqlParameter("nt", RichTextBox1.Text))
-                cmd.Parameters.Add(New MySqlParameter("torder", Label19.Text))
-                cmd.Parameters.Add(New MySqlParameter("stat", "pending"))
-                cmd.ExecuteNonQuery()
-                disconnect()
-                MsgBox("Reservation Succefuly Added!", MsgBoxStyle.Exclamation, "Cook Eat System")
-                TextBox8.Clear()
-                TextBox9.Clear()
-                DateTimePicker1.Value = Now()
-                TextBox10.Clear()
-                RichTextBox1.Clear()
-                Me.Close()
-                Admin.Opacity = 1
+                If MessageBox.Show(TextBox8.Text & vbCrLf & TextBox9.Text & vbCrLf & DateTimePicker1.Text & vbCrLf & ComboBox2.Text & ":" & ComboBox3.Text & vbCrLf & TextBox10.Text & vbCrLf & RichTextBox1.Text & vbCrLf & " " & vbCrLf & "Save Reservation?", "Cook Eat System", MessageBoxButtons.YesNo) = DialogResult.No Then
+                Else
+                    Connect()
+                    cmd = New MySqlCommand("INSERT INTO res VALUES (NULL, @cnm, @cn,@day,@time, @rt, @nt, @torder,@stat)", con)
+                    cmd.Parameters.Add(New MySqlParameter("cnm", TextBox8.Text))
+                    cmd.Parameters.Add(New MySqlParameter("cn", TextBox9.Text))
+                    cmd.Parameters.Add(New MySqlParameter("day", DateTimePicker1.Value))
+                    cmd.Parameters.Add(New MySqlParameter("time", (ComboBox2.Text & ":" & ComboBox3.Text)))
+                    cmd.Parameters.Add(New MySqlParameter("rt", TextBox10.Text))
+                    cmd.Parameters.Add(New MySqlParameter("nt", RichTextBox1.Text))
+                    cmd.Parameters.Add(New MySqlParameter("torder", Label19.Text))
+                    cmd.Parameters.Add(New MySqlParameter("stat", "pending"))
+                    cmd.ExecuteNonQuery()
+                    disconnect()
+                    MsgBox("Reservation Succefuly Added!", MsgBoxStyle.Exclamation, "Cook Eat System")
+                    TextBox8.Clear()
+                    TextBox9.Clear()
+                    DateTimePicker1.Value = Now()
+                    TextBox10.Clear()
+                    RichTextBox1.Clear()
+                    Me.Close()
+                    Admin.Opacity = 1
+                End If
             End If
         End If
     End Sub
+
+
 End Class

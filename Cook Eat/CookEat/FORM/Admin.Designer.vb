@@ -58,9 +58,13 @@ Partial Class Admin
         Me.Calendar1 = New System.Windows.Forms.Calendar.Calendar()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Button14 = New System.Windows.Forms.Button()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Frost_Widget1 = New Frost_Controls.Frost_Widget()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -101,6 +105,8 @@ Partial Class Admin
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +116,7 @@ Partial Class Admin
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage6.SuspendLayout()
@@ -424,6 +431,9 @@ Partial Class Admin
         'TabPage4
         '
         Me.TabPage4.BackgroundImage = Global.CookEat.My.Resources.Resources.panel1
+        Me.TabPage4.Controls.Add(Me.Button15)
+        Me.TabPage4.Controls.Add(Me.Label18)
+        Me.TabPage4.Controls.Add(Me.Button14)
         Me.TabPage4.Location = New System.Drawing.Point(4, 25)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
@@ -431,6 +441,42 @@ Partial Class Admin
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "History Log"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Button15
+        '
+        Me.Button15.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button15.ForeColor = System.Drawing.Color.White
+        Me.Button15.Location = New System.Drawing.Point(36, 149)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(146, 42)
+        Me.Button15.TabIndex = 2
+        Me.Button15.Text = "Reservation"
+        Me.Button15.UseVisualStyleBackColor = False
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.Font = New System.Drawing.Font("Adobe Gothic Std B", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.Transparent
+        Me.Label18.Location = New System.Drawing.Point(341, 21)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(156, 34)
+        Me.Label18.TabIndex = 1
+        Me.Label18.Text = "Log History"
+        '
+        'Button14
+        '
+        Me.Button14.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button14.ForeColor = System.Drawing.Color.White
+        Me.Button14.Location = New System.Drawing.Point(36, 85)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(146, 42)
+        Me.Button14.TabIndex = 0
+        Me.Button14.Text = "Login and Logout"
+        Me.Button14.UseVisualStyleBackColor = False
         '
         'TabPage5
         '
@@ -462,6 +508,7 @@ Partial Class Admin
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.TabPage6.Controls.Add(Me.Frost_Widget1)
         Me.TabPage6.Controls.Add(Me.Button9)
         Me.TabPage6.Controls.Add(Me.Label7)
         Me.TabPage6.Controls.Add(Me.Label6)
@@ -485,6 +532,19 @@ Partial Class Admin
         Me.TabPage6.Size = New System.Drawing.Size(316, 497)
         Me.TabPage6.TabIndex = 0
         Me.TabPage6.Text = "Account Information"
+        '
+        'Frost_Widget1
+        '
+        Me.Frost_Widget1.LabelAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Frost_Widget1.LabelBackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.Frost_Widget1.LabelFont = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Frost_Widget1.LabelForeColor = System.Drawing.SystemColors.ControlText
+        Me.Frost_Widget1.LabelHeight = 22
+        Me.Frost_Widget1.LabelText = "Frost_Label1"
+        Me.Frost_Widget1.Location = New System.Drawing.Point(112, 450)
+        Me.Frost_Widget1.Name = "Frost_Widget1"
+        Me.Frost_Widget1.Size = New System.Drawing.Size(200, 100)
+        Me.Frost_Widget1.TabIndex = 37
         '
         'Button9
         '
@@ -903,6 +963,11 @@ Partial Class Admin
         '
         Me.Timer2.Interval = 1000
         '
+        'Timer3
+        '
+        Me.Timer3.Enabled = True
+        Me.Timer3.Interval = 2000
+        '
         'Admin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -937,6 +1002,8 @@ Partial Class Admin
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
@@ -1016,4 +1083,10 @@ Partial Class Admin
     Friend WithEvents Label17 As Label
     Friend WithEvents Button13 As Button
     Friend WithEvents Timer2 As Timer
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Timer3 As Timer
+    Friend WithEvents Frost_Widget1 As Frost_Controls.Frost_Widget
+    Friend WithEvents Button14 As Button
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Button15 As Button
 End Class
