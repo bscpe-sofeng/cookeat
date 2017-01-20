@@ -51,6 +51,7 @@ Partial Class Admin
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button16 = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Button12 = New System.Windows.Forms.Button()
@@ -105,6 +106,8 @@ Partial Class Admin
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -317,6 +320,7 @@ Partial Class Admin
         'TabPage2
         '
         Me.TabPage2.BackgroundImage = Global.CookEat.My.Resources.Resources.panel1
+        Me.TabPage2.Controls.Add(Me.Button16)
         Me.TabPage2.Controls.Add(Me.Button13)
         Me.TabPage2.Controls.Add(Me.Label17)
         Me.TabPage2.Controls.Add(Me.Button12)
@@ -330,14 +334,26 @@ Partial Class Admin
         Me.TabPage2.Text = "Reservation"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Button16
+        '
+        Me.Button16.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button16.ForeColor = System.Drawing.Color.White
+        Me.Button16.Location = New System.Drawing.Point(606, 516)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(120, 23)
+        Me.Button16.TabIndex = 7
+        Me.Button16.Text = "Reservation List"
+        Me.Button16.UseVisualStyleBackColor = False
+        '
         'Button13
         '
         Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button13.ForeColor = System.Drawing.Color.White
-        Me.Button13.Location = New System.Drawing.Point(725, 12)
+        Me.Button13.Location = New System.Drawing.Point(730, 516)
         Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(126, 23)
+        Me.Button13.Size = New System.Drawing.Size(120, 23)
         Me.Button13.TabIndex = 6
         Me.Button13.Text = "New Reservation"
         Me.Button13.UseVisualStyleBackColor = False
@@ -359,7 +375,7 @@ Partial Class Admin
         Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button12.ForeColor = System.Drawing.Color.White
-        Me.Button12.Location = New System.Drawing.Point(87, 12)
+        Me.Button12.Location = New System.Drawing.Point(775, 11)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(75, 23)
         Me.Button12.TabIndex = 4
@@ -413,7 +429,7 @@ Partial Class Admin
         Me.Calendar1.Location = New System.Drawing.Point(6, 41)
         Me.Calendar1.Name = "Calendar1"
         Me.Calendar1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Calendar1.Size = New System.Drawing.Size(845, 498)
+        Me.Calendar1.Size = New System.Drawing.Size(845, 471)
         Me.Calendar1.TabIndex = 2
         Me.Calendar1.Text = "Calendar1"
         '
@@ -953,7 +969,7 @@ Partial Class Admin
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox1.Location = New System.Drawing.Point(223, 92)
+        Me.GroupBox1.Location = New System.Drawing.Point(223, 101)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(865, 26)
         Me.GroupBox1.TabIndex = 13
@@ -963,10 +979,35 @@ Partial Class Admin
         '
         Me.Timer2.Interval = 1000
         '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
+        Me.Label19.ForeColor = System.Drawing.Color.White
+        Me.Label19.Location = New System.Drawing.Point(145, 208)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(21, 13)
+        Me.Label19.TabIndex = 14
+        Me.Label19.Text = "No"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(25, 208)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(119, 13)
+        Me.Label20.TabIndex = 15
+        Me.Label20.Text = "Number of Reservation:"
+        '
+        'BackgroundWorker1
+        '
+        '
         'Timer3
         '
         Me.Timer3.Enabled = True
-        Me.Timer3.Interval = 2000
+        Me.Timer3.Interval = 1000
         '
         'Admin
         '
@@ -981,7 +1022,9 @@ Partial Class Admin
         Me.Controls.Add(Me.PictureBox7)
         Me.Controls.Add(Me.PictureBox8)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox1)
@@ -1083,10 +1126,13 @@ Partial Class Admin
     Friend WithEvents Label17 As Label
     Friend WithEvents Button13 As Button
     Friend WithEvents Timer2 As Timer
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Timer3 As Timer
     Friend WithEvents Frost_Widget1 As Frost_Controls.Frost_Widget
     Friend WithEvents Button14 As Button
     Friend WithEvents Label18 As Label
     Friend WithEvents Button15 As Button
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Button16 As Button
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Timer3 As Timer
 End Class

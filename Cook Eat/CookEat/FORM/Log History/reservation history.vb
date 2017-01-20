@@ -11,7 +11,7 @@ Public Class reshistory
 
     Private Sub LoadTable()
         Connect()
-        da = New MySqlDataAdapter("SELECT rno As `Reservation Number`, cname AS `Customer Name`, cno AS `Contact Number`, day As `Day`, time As `Time` , status As `Status` from res  WHERE cname LIKE @search and status ='Cancel' or status = 'Done'", con)
+        da = New MySqlDataAdapter("SELECT rno As `Reservation Number`, cname AS `Customer Name`, cno AS `Contact Number`, day As `Day`, time As `Time` , torder As 'Taken By',status As `Status` from res  WHERE cname Like @search and (status Like 'Done' or status like 'Cancel')", con)
         cmd = da.SelectCommand
         cmd.Parameters.Add(New MySqlParameter("search", "%" & TextBox1.Text & "%"))
         cmd.ExecuteNonQuery()

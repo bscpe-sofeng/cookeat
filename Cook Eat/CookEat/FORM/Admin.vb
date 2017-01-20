@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports Frost_Controls  
 Public Class Admin
     Dim MenuA As Boolean = False
     Dim MenuB As Boolean = False
@@ -13,16 +14,33 @@ Public Class Admin
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
         Label17.Text = currentDate.ToString("MMMM, yyyy")
         LoadCalendar(currentDate)
-
-
         If pos = "cashier" Then
             Button4.Hide()
             Button5.Hide()
-
         End If
+
     End Sub
     '============================================ Design and Layout ================================================================
     '===============================================================================================================================
+
+    Private Sub resno()
+        Connect()
+        cmd = New MySqlCommand("SELECT COUNT(rno) AS `Number of Reservation` FROM res  where day= DATE(NOW()) and status = 'pending'", con)
+        dr = cmd.ExecuteReader()
+        If dr.Read Then
+            Dim noofres As String = dr("Number of Reservation").ToString
+            If noofres = "" Then
+                Label19.Text = "No Reservation"
+            Else
+                Label19.Text = noofres
+            End If
+        End If
+        disconnect()
+    End Sub
+
+
+
+
     Private Sub Admin_MouseDown_1(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         x = Control.MousePosition.X - Me.Location.X
         x = Control.MousePosition.Y - Me.Location.Y
@@ -100,6 +118,7 @@ Public Class Admin
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Label2.Text = DateTime.Now.ToString("h:mm:ss tt")
+        resno()
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         TabControl1.SelectedTab = TabPage1
@@ -166,6 +185,9 @@ Public Class Admin
         DataGridView1.Columns("no").Visible = False
         DataGridView1.Columns("password").Visible = False
     End Sub
+
+
+
     Private Sub search()
         LoadTable()
         If DataGridView1.SelectedRows.Count > 0 Then
@@ -380,6 +402,7 @@ Public Class Admin
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        resno()
         LoadCalendar(currentDate)
         Calendar1.Reload()
     End Sub
@@ -387,12 +410,45 @@ Public Class Admin
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
         Me.Opacity = 0.7
         loghistory.ShowDialog()
-
     End Sub
-
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
         Me.Opacity = 0.7
         reshistory.ShowDialog()
+    End Sub
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        If Not BackgroundWorker1.IsBusy Then
+            BackgroundWorker1.RunWorkerAsync()
+        End If
+    End Sub
+    Private Sub _ShowNotif(message As String, black As String, light As String, notifType As Frost_Notification.NotificationType)
+        Dim notif As New Frost_Notification()
+        notif.Show(message, black, light, Me, notifType)
+    End Sub
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        Connect1()
+        cmd1 = New MySqlCommand("Select * from res where time = TIME(@start)  and status = 'pending' and `day` = DATE(@date)", con1)
+        Dim dteNow As DateTime = Now
+        Dim startTime As DateTime = Now.AddMinutes(10)
+        Dim endTime As DateTime = Now
+        cmd1.Parameters.Add(New MySqlParameter("date", dteNow))
+        cmd1.Parameters.Add(New MySqlParameter("start", startTime))
+        cmd1.Parameters.Add(New MySqlParameter("end", endTime))
+        dr1 = cmd1.ExecuteReader
+        If dr1.Read() Then
+            If Not _notified.Contains(dr1("rno")) Then
+                _notified.Add(dr1("rno"))
+                Invoke(New ShowNotif(AddressOf _ShowNotif), New Object() {dr1("note"), "Table for: " & dr1("rtable"), "  " & dr1("cname"), Frost_Notification.NotificationType.WARNING})
+            End If
+        Else
+        End If
+            disconnect1()
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        Me.Opacity = 0.7
+        reservationlist.ShowDialog()
+
+
     End Sub
 
     Private Sub Calendar1_ItemSelected(sender As Object, e As Calendar.CalendarItemEventArgs) Handles Calendar1.ItemSelected
@@ -407,26 +463,5 @@ Public Class Admin
         End If
         disconnect()
     End Sub
-
-    ' Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
-    ' If Not BackgroundWorker1.IsBusy Then
-    '        BackgroundWorker1.RunWorkerAsync()
-    'End If
-    ' End Sub
-
-    ' Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-    '    Connect1()
-    '    cmd1 = New MySqlCommand("Select * from res where `day` = DATE(@date) AND (`time` BETWEEN TIME(@start) AND TIME(@end))", con1)
-    'Dim endTime As DateTime = Now.AddSeconds(10)
-    'Dim dteNow As DateTime = Now
-    '     cmd1.Parameters.Add(New MySqlParameter("date", dteNow))
-    '    cmd1.Parameters.Add(New MySqlParameter("start", dteNow))
-    '    cmd1.Parameters.Add(New MySqlParameter("end", endTime))
-    '    dr1 = cmd1.ExecuteReader
-    'If dr1.Read() Then
-    '     MsgBox("Hi")
-    '   End If
-    '   disconnect1()
-    ' End Sub
 
 End Class

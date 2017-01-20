@@ -160,6 +160,12 @@
     <Compile Include="FORM\Reservation.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FORM\reservationlist.Designer.vb">
+      <DependentUpon>reservationlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\reservationlist.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FORM\SQLconnector 1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\Reservation.resx">
       <DependentUpon>Reservation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\reservationlist.resx">
+      <DependentUpon>reservationlist.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

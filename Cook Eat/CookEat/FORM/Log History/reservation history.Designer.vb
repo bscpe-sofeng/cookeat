@@ -41,7 +41,7 @@ Partial Class reshistory
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Arial Unicode MS", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(146, 9)
+        Me.Label1.Location = New System.Drawing.Point(127, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(240, 28)
         Me.Label1.TabIndex = 16
@@ -105,12 +105,12 @@ Partial Class reshistory
         Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 87)
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 78)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
-        Me.DataGridView1.Size = New System.Drawing.Size(465, 319)
+        Me.DataGridView1.Size = New System.Drawing.Size(465, 328)
         Me.DataGridView1.TabIndex = 10
         '
         'reshistory

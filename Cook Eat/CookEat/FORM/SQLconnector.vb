@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Text
 Imports MySql.Data.MySqlClient
+Imports Frost_Controls
 Module SQLconnector2
     Friend host As String = ""
     Friend user As String = ""
@@ -14,6 +15,8 @@ Module SQLconnector2
     Friend logname As String
     Friend pos As String
     Friend rname As String
+    Friend _notified As New List(Of Object)
+    Friend Delegate Sub ShowNotif(message As String, black As String, light As String, notifType As Frost_Notification.NotificationType)
     Friend Sub Connect()
         Try
             disconnect()
