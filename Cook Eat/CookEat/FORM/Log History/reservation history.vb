@@ -84,4 +84,6 @@ Public Class reshistory
         Admin.Opacity = 1
         Me.Close()
     End Sub
+
+
 End Class

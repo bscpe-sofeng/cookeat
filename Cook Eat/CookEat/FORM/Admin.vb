@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports Frost_Controls  
 Public Class Admin
-    Dim MenuA As Boolean = False
+    Dim MenuA As Boolean = True
     Dim MenuB As Boolean = False
     Dim x, y As Integer
     Dim Newpoint As New Point
@@ -18,7 +18,7 @@ Public Class Admin
             Button4.Hide()
             Button5.Hide()
         End If
-
+        LoadOrder()
     End Sub
     '============================================ Design and Layout ================================================================
     '===============================================================================================================================
@@ -39,11 +39,10 @@ Public Class Admin
     End Sub
 
 
-
-
     Private Sub Admin_MouseDown_1(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         x = Control.MousePosition.X - Me.Location.X
-        x = Control.MousePosition.Y - Me.Location.Y
+        y = Control.MousePosition.Y - Me.Location.Y
+
         Me.Opacity = 0.8
     End Sub
     Private Sub Admin_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
@@ -88,36 +87,30 @@ Public Class Admin
     Private Sub PictureBox8_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox8.MouseClick
         Me.Refresh()
         If Not MenuA Then
-            Do Until Me.Width = 1100
-                Me.Width += 20
-                System.Threading.Thread.Sleep(1)
-            Loop
+            TabControl1.Visible = True
+            _func(New Frost_Animation.Animation().GrowWidth(Me, 1100, 200, 0, True, 100))
             MenuA = True
         Else
-            Do Until Me.Width = 200
-                Me.Width -= 4
-                System.Threading.Thread.Sleep(1)
-            Loop
+
+            _func(New Frost_Animation.Animation().ShrinkWidth(Me, 1100, 200, 0, True, 100))
             MenuA = False
+            TabControl1.Visible = False
         End If
+
         If Me.Width = 1100 Then
-            Do Until Panel1.Height = 375
-                Panel1.Height += 5
-                System.Threading.Thread.Sleep(1)
-            Loop
+            _func(New Frost_Animation.Animation().GrowHeight(Panel1, 375, 10, 0, True, 50))
             MenuB = True
         Else
-            Do Until Panel1.Height = 10
-                Panel1.Height -= 5
-                System.Threading.Thread.Sleep(1)
-            Loop
+            _func(New Frost_Animation.Animation().ShrinkHeight(Panel1, 375, 10, 0, True, 50))
             MenuB = False
         End If
+
     End Sub
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Label2.Text = DateTime.Now.ToString("h:mm:ss tt")
+        Frost_Label4.Text = DateTime.Now.ToString("yyyy/mm/dd")
         resno()
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -434,14 +427,13 @@ Public Class Admin
         cmd1.Parameters.Add(New MySqlParameter("start", startTime))
         cmd1.Parameters.Add(New MySqlParameter("end", endTime))
         dr1 = cmd1.ExecuteReader
-        If dr1.Read() Then
+        While dr1.Read()
             If Not _notified.Contains(dr1("rno")) Then
                 _notified.Add(dr1("rno"))
                 Invoke(New ShowNotif(AddressOf _ShowNotif), New Object() {dr1("note"), "Table for: " & dr1("rtable"), "  " & dr1("cname"), Frost_Notification.NotificationType.WARNING})
             End If
-        Else
-        End If
-            disconnect1()
+        End While
+        disconnect1()
     End Sub
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
@@ -450,6 +442,14 @@ Public Class Admin
 
 
     End Sub
+
+    Private Sub Frost_Button1_Click(sender As Object, e As EventArgs) Handles Frost_Button1.Click
+        ' Me.Opacity = 0.7
+        _func(New Frost_Animation.Animation().ShowDialog(order, Me))
+        LoadOrder()
+        order.Dispose()
+    End Sub
+
 
     Private Sub Calendar1_ItemSelected(sender As Object, e As Calendar.CalendarItemEventArgs) Handles Calendar1.ItemSelected
         Connect()
@@ -464,4 +464,153 @@ Public Class Admin
         disconnect()
     End Sub
 
+    '============================================== ORDER ===========================================
+
+    Private Sub LoadOrder()
+        Panel2.Controls.Clear()
+        Connect()
+        da = New MySqlDataAdapter("select DISTINCT(category) AS catg from menu", con)
+        Dim dt As New DataTable
+        da.Fill(dt)
+        disconnect()
+
+        Dim dtr As New DataTableReader(dt)
+        Dim lft As Integer = 10
+        While dtr.Read
+            LoadMenu(dtr("catg"), lft)
+            lft += 153 + 20
+        End While
+    End Sub
+
+    Private Sub Frost_Button2_Click(sender As Object, e As EventArgs) Handles Frost_Button2.Click
+
+        If TextBox14.Text = "" Or TextBox15.Text = "" Or Frost_ComboBox1.Text = "" Or Frost_ComboBox2.Text = "" Or TextBox16.Text = "" Then
+            MsgBox("Complete Information Required!", MsgBoxStyle.Exclamation, "Cook Eat System")
+        Else
+
+            Connect()
+            cmd = New MySqlCommand("INSERT INTO transaction VALUES (NULL, @tid, now(),@tp,@tt, @tv, @dt, @dv)", con)
+            cmd.Parameters.Add(New MySqlParameter("tid", TextBox14.Text))
+            cmd.Parameters.Add(New MySqlParameter("tp", Frost_Label1.Text))
+            cmd.Parameters.Add(New MySqlParameter("tt", Frost_ComboBox1.Text))
+            cmd.Parameters.Add(New MySqlParameter("tv", TextBox15.Text))
+            cmd.Parameters.Add(New MySqlParameter("dt", Frost_ComboBox2.Text))
+            cmd.Parameters.Add(New MySqlParameter("dv", TextBox16.Text))
+            cmd.ExecuteNonQuery()
+            Dim ID As Integer = cmd.LastInsertedId
+            disconnect()
+            Connect()
+            For Each i As DataGridViewRow In DataGridView2.Rows
+
+                cmd = New MySqlCommand("INSERT INTO transdetails VALUES (NULL, @tid, @trid,@iid,@sp, @qt, @ttl)", con)
+                cmd.Parameters.Add(New MySqlParameter("tid", ID))
+                cmd.Parameters.Add(New MySqlParameter("trid", i.Cells("ID").Value))
+                cmd.Parameters.Add(New MySqlParameter("iid", i.Cells("ItemPrice").Value))
+                cmd.Parameters.Add(New MySqlParameter("sp", i.Cells("Quantity").Value))
+                cmd.Parameters.Add(New MySqlParameter("qt", i.Cells("Price").Value))
+                cmd.Parameters.Add(New MySqlParameter("ttl", i.Cells("ItemPrice").Value))
+                cmd.ExecuteNonQuery()
+
+            Next
+            disconnect()
+
+
+            DataGridView2.Rows.Clear()
+            LoadOrder()
+        End If
+    End Sub
+    Dim WithEvents menuItem As New MenuItem
+    Private Sub LoadMenu(Category As String, left As Integer)
+        Connect()
+        cmd = New MySqlCommand("SELECT * from menu WHERE category = @search ORDER BY Color ASC", con)
+        cmd.Parameters.Add(New MySqlParameter("search", Category))
+        dr = cmd.ExecuteReader
+        Dim top As Integer = 10
+        While dr.Read
+            menuItem = New MenuItem
+            menuItem.ItemCode = dr("itemcode")
+            menuItem.ITEMNAME = dr("itemname")
+            menuItem.PRICE = dr("price")
+            menuItem.ID = dr("id")
+            menuItem.BackColor = Color.FromArgb(dr("color"))
+            menuItem.Left = left
+            menuItem.Top = top
+            AddHandler menuItem.ValueChanged, AddressOf menuItem_ValueChanged
+            Panel2.Controls.Add(menuItem)
+            top = top + menuItem.Height + 10
+        End While
+        disconnect()
+    End Sub
+    Private Sub menuItem_ValueChanged(sender As Object, e As EventArgs)
+        Dim item As MenuItem = CType(sender, MenuItem)
+        If item.QUANTITY > 0 Then
+            Dim index As Integer = getItemindex(item.ID)
+            If index > -1 Then
+                DataGridView2.Rows.RemoveAt(index)
+                DataGridView2.Rows.Insert(index, New Object() {item.ID, item.ItemCode, item.QUANTITY, item.QUANTITY * item.PRICE, item.PRICE})
+            Else
+                DataGridView2.Rows.Add(New Object() {item.ID, item.ItemCode, item.QUANTITY, item.QUANTITY * item.PRICE, item.PRICE})
+            End If
+        Else
+            Dim index As Integer = getItemindex(item.ID)
+            If index > -1 Then
+                DataGridView2.Rows.RemoveAt(index)
+            End If
+        End If
+
+        totalorder()
+    End Sub
+    Private Function getItemindex(item As Object) As Integer
+        Dim counter As Integer = 0
+        For Each i As DataGridViewRow In DataGridView2.Rows
+            If i.Cells("ID").Value.Equals(item) Then
+                Return counter
+            End If
+            counter += 1
+        Next
+        Return -1
+    End Function
+
+    Private Sub TextBox14_TextChanged(sender As Object, e As EventArgs) Handles TextBox14.TextChanged
+
+    End Sub
+
+    Private Sub Frost_ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Frost_ComboBox1.SelectedIndexChanged
+        totalorder()
+    End Sub
+
+    Private Sub Frost_ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Frost_ComboBox2.SelectedIndexChanged
+        totalorder()
+    End Sub
+
+    Private Sub TextBox16_TextChanged(sender As Object, e As EventArgs) Handles TextBox16.TextChanged
+        totalorder()
+
+    End Sub
+
+    Private Sub totalorder()
+        Frost_Label1.Text = "0.00"
+        For Each i As DataGridViewRow In DataGridView2.Rows
+            Frost_Label1.Text = Val(Frost_Label1.Text) + i.Cells("Price").Value
+        Next
+
+        Dim total As Double = Val(Frost_Label1.Text)
+
+        Frost_Label2.Text = Double.Parse(Frost_Label1.Text) * 0.2
+        If Frost_ComboBox1.SelectedIndex = 0 Then
+            TextBox15.Text = Frost_Label1.Text
+        ElseIf Frost_ComboBox1.SelectedIndex = 1 Then
+            TextBox15.Text = Frost_Label1.Text
+        ElseIf Frost_ComboBox1.SelectedIndex = 2 Then
+            TextBox15.Text = total * 0.12
+            total = total + (total * 0.12)
+        End If
+
+        If Frost_ComboBox2.SelectedIndex = 0 Then
+            total = total - (Val(Frost_Label1.Text) * Val(TextBox16.Text))
+        ElseIf Frost_ComboBox2.SelectedIndex = 1 Then
+            total = total - Val(TextBox16.Text)
+        End If
+        Frost_Label2.Text = FormatNumber(total, 2)
+    End Sub
 End Class

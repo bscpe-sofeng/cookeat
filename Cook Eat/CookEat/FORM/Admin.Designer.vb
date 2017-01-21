@@ -40,6 +40,7 @@ Partial Class Admin
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Frost_Button1 = New Frost_Controls.Frost_Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -110,6 +111,29 @@ Partial Class Admin
         Me.Label20 = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.Frost_Button2 = New Frost_Controls.Frost_Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TabPage8 = New System.Windows.Forms.TabPage()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Frost_Label1 = New Frost_Controls.Frost_Label()
+        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.Frost_Label3 = New Frost_Controls.Frost_Label()
+        Me.Frost_Label4 = New Frost_Controls.Frost_Label()
+        Me.Frost_ComboBox1 = New Frost_Controls.Frost_ComboBox()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
+        Me.TextBox16 = New System.Windows.Forms.TextBox()
+        Me.Frost_ComboBox2 = New Frost_Controls.Frost_ComboBox()
+        Me.Frost_Label2 = New Frost_Controls.Frost_Label()
+        Me.Frost_Label5 = New Frost_Controls.Frost_Label()
+        Me.Frost_Label6 = New Frost_Controls.Frost_Label()
+        Me.Frost_Label8 = New Frost_Controls.Frost_Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +142,7 @@ Partial Class Admin
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -125,6 +150,8 @@ Partial Class Admin
         Me.TabPage6.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -182,6 +209,8 @@ Partial Class Admin
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
         Me.Panel1.BackgroundImage = Global.CookEat.My.Resources.Resources.menucoleection
+        Me.Panel1.Controls.Add(Me.Button17)
+        Me.Panel1.Controls.Add(Me.Frost_Button1)
         Me.Panel1.Controls.Add(Me.Button6)
         Me.Panel1.Controls.Add(Me.Button5)
         Me.Panel1.Controls.Add(Me.Button4)
@@ -193,8 +222,22 @@ Partial Class Admin
         Me.Panel1.Size = New System.Drawing.Size(175, 375)
         Me.Panel1.TabIndex = 6
         '
+        'Frost_Button1
+        '
+        Me.Frost_Button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Frost_Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Frost_Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Frost_Button1.ForeColor = System.Drawing.Color.White
+        Me.Frost_Button1.Location = New System.Drawing.Point(7, 180)
+        Me.Frost_Button1.Name = "Frost_Button1"
+        Me.Frost_Button1.Size = New System.Drawing.Size(160, 23)
+        Me.Frost_Button1.TabIndex = 0
+        Me.Frost_Button1.Text = "ADD MENU ITEM"
+        Me.Frost_Button1.UseVisualStyleBackColor = False
+        '
         'Button6
         '
+        Me.Button6.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -208,11 +251,12 @@ Partial Class Admin
         '
         'Button5
         '
+        Me.Button5.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button5.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(7, 176)
+        Me.Button5.Location = New System.Drawing.Point(8, 238)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(160, 23)
         Me.Button5.TabIndex = 4
@@ -221,11 +265,12 @@ Partial Class Admin
         '
         'Button4
         '
+        Me.Button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(7, 138)
+        Me.Button4.Location = New System.Drawing.Point(7, 209)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(160, 23)
         Me.Button4.TabIndex = 3
@@ -234,11 +279,12 @@ Partial Class Admin
         '
         'Button3
         '
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(7, 101)
+        Me.Button3.Location = New System.Drawing.Point(7, 147)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(160, 23)
         Me.Button3.TabIndex = 2
@@ -247,11 +293,12 @@ Partial Class Admin
         '
         'Button2
         '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(7, 64)
+        Me.Button2.Location = New System.Drawing.Point(7, 111)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(160, 23)
         Me.Button2.TabIndex = 1
@@ -260,22 +307,23 @@ Partial Class Admin
         '
         'Button1
         '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(7, 28)
+        Me.Button1.Location = New System.Drawing.Point(7, 75)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(160, 23)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "ORDER"
+        Me.Button1.Text = "NEW ORDER"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'PictureBox7
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox7.Image = Global.CookEat.My.Resources.Resources.menunew
-        Me.PictureBox7.Location = New System.Drawing.Point(12, 114)
+        Me.PictureBox7.Location = New System.Drawing.Point(15, 11)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(170, 40)
         Me.PictureBox7.TabIndex = 9
@@ -285,7 +333,7 @@ Partial Class Admin
         '
         Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox8.Image = Global.CookEat.My.Resources.Resources.menunew1
-        Me.PictureBox8.Location = New System.Drawing.Point(13, 114)
+        Me.PictureBox8.Location = New System.Drawing.Point(15, 11)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(170, 40)
         Me.PictureBox8.TabIndex = 10
@@ -293,7 +341,9 @@ Partial Class Admin
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.TabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+        Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
@@ -308,13 +358,29 @@ Partial Class Admin
         '
         'TabPage1
         '
+        Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackgroundImage = Global.CookEat.My.Resources.Resources.panel1
+        Me.TabPage1.Controls.Add(Me.Frost_Label8)
+        Me.TabPage1.Controls.Add(Me.Frost_Label6)
+        Me.TabPage1.Controls.Add(Me.Frost_Label5)
+        Me.TabPage1.Controls.Add(Me.Frost_Label2)
+        Me.TabPage1.Controls.Add(Me.TextBox16)
+        Me.TabPage1.Controls.Add(Me.Frost_ComboBox2)
+        Me.TabPage1.Controls.Add(Me.TextBox15)
+        Me.TabPage1.Controls.Add(Me.Frost_ComboBox1)
+        Me.TabPage1.Controls.Add(Me.Frost_Label4)
+        Me.TabPage1.Controls.Add(Me.Frost_Label3)
+        Me.TabPage1.Controls.Add(Me.TextBox14)
+        Me.TabPage1.Controls.Add(Me.Frost_Label1)
+        Me.TabPage1.Controls.Add(Me.DataGridView2)
+        Me.TabPage1.Controls.Add(Me.Frost_Button2)
+        Me.TabPage1.Controls.Add(Me.Panel2)
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(857, 545)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Order"
+        Me.TabPage1.Text = "New Order"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
@@ -956,7 +1022,7 @@ Partial Class Admin
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(127, 676)
+        Me.Label2.Location = New System.Drawing.Point(126, 676)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(30, 13)
         Me.Label2.TabIndex = 12
@@ -967,9 +1033,10 @@ Partial Class Admin
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox1.Location = New System.Drawing.Point(223, 101)
+        Me.GroupBox1.Location = New System.Drawing.Point(223, 94)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(865, 26)
         Me.GroupBox1.TabIndex = 13
@@ -1009,19 +1076,217 @@ Partial Class Admin
         Me.Timer3.Enabled = True
         Me.Timer3.Interval = 1000
         '
+        'Frost_Button2
+        '
+        Me.Frost_Button2.Location = New System.Drawing.Point(616, 512)
+        Me.Frost_Button2.Name = "Frost_Button2"
+        Me.Frost_Button2.Size = New System.Drawing.Size(235, 23)
+        Me.Frost_Button2.TabIndex = 0
+        Me.Frost_Button2.Text = "Take Order"
+        Me.Frost_Button2.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.AutoScroll = True
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Location = New System.Drawing.Point(6, 8)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(604, 527)
+        Me.Panel2.TabIndex = 1
+        '
+        'TabPage8
+        '
+        Me.TabPage8.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage8.Name = "TabPage8"
+        Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage8.Size = New System.Drawing.Size(857, 545)
+        Me.TabPage8.TabIndex = 5
+        Me.TabPage8.Text = "Orders"
+        Me.TabPage8.UseVisualStyleBackColor = True
+        '
+        'Button17
+        '
+        Me.Button17.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Button17.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button17.ForeColor = System.Drawing.Color.White
+        Me.Button17.Location = New System.Drawing.Point(8, 43)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(160, 23)
+        Me.Button17.TabIndex = 6
+        Me.Button17.Text = "ORDERS"
+        Me.Button17.UseVisualStyleBackColor = False
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.ItemCode, Me.Quantity, Me.Price, Me.ItemPrice})
+        Me.DataGridView2.Location = New System.Drawing.Point(614, 8)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.ReadOnly = True
+        Me.DataGridView2.RowHeadersVisible = False
+        Me.DataGridView2.Size = New System.Drawing.Size(237, 288)
+        Me.DataGridView2.TabIndex = 2
+        '
+        'Frost_Label1
+        '
+        Me.Frost_Label1.AutoSize = True
+        Me.Frost_Label1.Location = New System.Drawing.Point(742, 305)
+        Me.Frost_Label1.Name = "Frost_Label1"
+        Me.Frost_Label1.Size = New System.Drawing.Size(55, 13)
+        Me.Frost_Label1.TabIndex = 3
+        Me.Frost_Label1.Text = "total priice"
+        '
+        'TextBox14
+        '
+        Me.TextBox14.Location = New System.Drawing.Point(740, 323)
+        Me.TextBox14.Name = "TextBox14"
+        Me.TextBox14.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox14.TabIndex = 5
+        '
+        'Frost_Label3
+        '
+        Me.Frost_Label3.AutoSize = True
+        Me.Frost_Label3.Location = New System.Drawing.Point(632, 327)
+        Me.Frost_Label3.Name = "Frost_Label3"
+        Me.Frost_Label3.Size = New System.Drawing.Size(99, 13)
+        Me.Frost_Label3.TabIndex = 6
+        Me.Frost_Label3.Text = "Official Receipt No:"
+        '
+        'Frost_Label4
+        '
+        Me.Frost_Label4.AutoSize = True
+        Me.Frost_Label4.Location = New System.Drawing.Point(741, 350)
+        Me.Frost_Label4.Name = "Frost_Label4"
+        Me.Frost_Label4.Size = New System.Drawing.Size(30, 13)
+        Me.Frost_Label4.TabIndex = 7
+        Me.Frost_Label4.Text = "Date"
+        '
+        'Frost_ComboBox1
+        '
+        Me.Frost_ComboBox1.FormattingEnabled = True
+        Me.Frost_ComboBox1.Items.AddRange(New Object() {"VAT Exempt", "VAT 0 - Rated", "VAT 12%"})
+        Me.Frost_ComboBox1.Location = New System.Drawing.Point(740, 369)
+        Me.Frost_ComboBox1.Name = "Frost_ComboBox1"
+        Me.Frost_ComboBox1.Size = New System.Drawing.Size(100, 21)
+        Me.Frost_ComboBox1.TabIndex = 8
+        '
+        'TextBox15
+        '
+        Me.TextBox15.Location = New System.Drawing.Point(740, 396)
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.Size = New System.Drawing.Size(60, 20)
+        Me.TextBox15.TabIndex = 9
+        '
+        'TextBox16
+        '
+        Me.TextBox16.Location = New System.Drawing.Point(740, 449)
+        Me.TextBox16.Name = "TextBox16"
+        Me.TextBox16.Size = New System.Drawing.Size(60, 20)
+        Me.TextBox16.TabIndex = 11
+        '
+        'Frost_ComboBox2
+        '
+        Me.Frost_ComboBox2.FormattingEnabled = True
+        Me.Frost_ComboBox2.Items.AddRange(New Object() {"Percentage", "Value"})
+        Me.Frost_ComboBox2.Location = New System.Drawing.Point(740, 422)
+        Me.Frost_ComboBox2.Name = "Frost_ComboBox2"
+        Me.Frost_ComboBox2.Size = New System.Drawing.Size(100, 21)
+        Me.Frost_ComboBox2.TabIndex = 10
+        '
+        'Frost_Label2
+        '
+        Me.Frost_Label2.AutoSize = True
+        Me.Frost_Label2.Location = New System.Drawing.Point(740, 474)
+        Me.Frost_Label2.Name = "Frost_Label2"
+        Me.Frost_Label2.Size = New System.Drawing.Size(51, 13)
+        Me.Frost_Label2.TabIndex = 12
+        Me.Frost_Label2.Text = "Net order"
+        '
+        'Frost_Label5
+        '
+        Me.Frost_Label5.AutoSize = True
+        Me.Frost_Label5.Location = New System.Drawing.Point(698, 350)
+        Me.Frost_Label5.Name = "Frost_Label5"
+        Me.Frost_Label5.Size = New System.Drawing.Size(33, 13)
+        Me.Frost_Label5.TabIndex = 13
+        Me.Frost_Label5.Text = "Date:"
+        '
+        'Frost_Label6
+        '
+        Me.Frost_Label6.AutoSize = True
+        Me.Frost_Label6.Location = New System.Drawing.Point(676, 375)
+        Me.Frost_Label6.Name = "Frost_Label6"
+        Me.Frost_Label6.Size = New System.Drawing.Size(55, 13)
+        Me.Frost_Label6.TabIndex = 14
+        Me.Frost_Label6.Text = "Tax Type:"
+        '
+        'Frost_Label8
+        '
+        Me.Frost_Label8.AutoSize = True
+        Me.Frost_Label8.Location = New System.Drawing.Point(653, 430)
+        Me.Frost_Label8.Name = "Frost_Label8"
+        Me.Frost_Label8.Size = New System.Drawing.Size(79, 13)
+        Me.Frost_Label8.TabIndex = 15
+        Me.Frost_Label8.Text = "Discount Type:"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(19, Byte), Integer), CType(CType(23, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.PictureBox7)
+        Me.Panel3.Controls.Add(Me.PictureBox8)
+        Me.Panel3.Location = New System.Drawing.Point(-3, 108)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(220, 592)
+        Me.Panel3.TabIndex = 16
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Visible = False
+        '
+        'ItemCode
+        '
+        Me.ItemCode.HeaderText = "Item Code"
+        Me.ItemCode.Name = "ItemCode"
+        Me.ItemCode.ReadOnly = True
+        '
+        'Quantity
+        '
+        Me.Quantity.HeaderText = "Quantity"
+        Me.Quantity.Name = "Quantity"
+        Me.Quantity.ReadOnly = True
+        '
+        'Price
+        '
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.ReadOnly = True
+        '
+        'ItemPrice
+        '
+        Me.ItemPrice.HeaderText = "Item Price"
+        Me.ItemPrice.Name = "ItemPrice"
+        Me.ItemPrice.ReadOnly = True
+        Me.ItemPrice.Visible = False
+        '
         'Admin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(1, Byte), Integer))
         Me.BackgroundImage = Global.CookEat.My.Resources.Resources.png_bg3
         Me.ClientSize = New System.Drawing.Size(1100, 700)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.PictureBox7)
-        Me.Controls.Add(Me.PictureBox8)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label19)
@@ -1029,12 +1294,13 @@ Partial Class Admin
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Admin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Admin"
-        Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(1, Byte), Integer))
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1043,6 +1309,8 @@ Partial Class Admin
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
@@ -1055,6 +1323,8 @@ Partial Class Admin
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1135,4 +1405,28 @@ Partial Class Admin
     Friend WithEvents Button16 As Button
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Timer3 As Timer
+    Friend WithEvents Frost_Button1 As Frost_Controls.Frost_Button
+    Friend WithEvents Frost_Button2 As Frost_Controls.Frost_Button
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents TabPage8 As TabPage
+    Friend WithEvents Button17 As Button
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents Frost_Label1 As Frost_Controls.Frost_Label
+    Friend WithEvents TextBox14 As TextBox
+    Friend WithEvents Frost_Label4 As Frost_Controls.Frost_Label
+    Friend WithEvents Frost_Label3 As Frost_Controls.Frost_Label
+    Friend WithEvents Frost_ComboBox1 As Frost_Controls.Frost_ComboBox
+    Friend WithEvents TextBox16 As TextBox
+    Friend WithEvents Frost_ComboBox2 As Frost_Controls.Frost_ComboBox
+    Friend WithEvents TextBox15 As TextBox
+    Friend WithEvents Frost_Label2 As Frost_Controls.Frost_Label
+    Friend WithEvents Frost_Label6 As Frost_Controls.Frost_Label
+    Friend WithEvents Frost_Label5 As Frost_Controls.Frost_Label
+    Friend WithEvents Frost_Label8 As Frost_Controls.Frost_Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents ID As DataGridViewTextBoxColumn
+    Friend WithEvents ItemCode As DataGridViewTextBoxColumn
+    Friend WithEvents Quantity As DataGridViewTextBoxColumn
+    Friend WithEvents Price As DataGridViewTextBoxColumn
+    Friend WithEvents ItemPrice As DataGridViewTextBoxColumn
 End Class

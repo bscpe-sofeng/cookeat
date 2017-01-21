@@ -26,7 +26,7 @@ Public Class LoginForm
     End Sub
     Private Sub Form1_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         x = Control.MousePosition.X - Me.Location.X
-        x = Control.MousePosition.Y - Me.Location.Y
+        y = Control.MousePosition.Y - Me.Location.Y
     End Sub
     Private Sub Form1_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
         If e.Button = Windows.Forms.MouseButtons.Left Then

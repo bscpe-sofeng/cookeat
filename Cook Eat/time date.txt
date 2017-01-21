@@ -4,3 +4,12 @@
                 End If
             Else
             End If
+
+
+
+
+
+
+SELECT itemCode, itemName, sellPrice, Quantity, Total
+FROM menu, transdetails
+WHERE itemid = menu.id

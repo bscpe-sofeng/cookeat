@@ -154,6 +154,12 @@
       <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FORM\order.Designer.vb">
+      <DependentUpon>order.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\order.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FORM\Reservation.Designer.vb">
       <DependentUpon>Reservation.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FORM\SQLconnector 1.vb" />
+    <Compile Include="MenuItem.Designer.vb">
+      <DependentUpon>MenuItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MenuItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -212,11 +224,17 @@
     <EmbeddedResource Include="FORM\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FORM\order.resx">
+      <DependentUpon>order.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FORM\Reservation.resx">
       <DependentUpon>Reservation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\reservationlist.resx">
       <DependentUpon>reservationlist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuItem.resx">
+      <DependentUpon>MenuItem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -402,6 +420,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
